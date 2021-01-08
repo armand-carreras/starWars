@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Films</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <ion-searchbar [(ngModel)]='query'
+                placeholder="Search Your Movie"
+                inputmode="search" type="search"
+                searchIcon='search-outline'
+                (ionChange)="onSearchClick($event)"
+                [debounce]="500"
+                showCancelButton="focus"
+                >
+  </ion-searchbar>
+
+  <ng-container *ngIf='queryObject!=undefined || queryObject!=null;
+                then search; else default'>
+  </ng-container>
+
+
+<ng-template #search>
+  <div class="searchContainer">
+    <ion-card class="card" *ngFor='let item of queryObject.results'
+              [routerLink]="'/tabs/films/'+item.id+'/'" routerDirection="forward">
+
+      <ion-img *ngIf='item.poster_path!=null' [src]='"https://image.tmdb.org/t/p/w500"+item.poster_path'></ion-img>
+      <ion-card-content *ngIf='item.media_type=="movie"'>
+        {{item.title}}
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ng-template>
+
+<ng-template #default>
+
+</ng-template>
+
+
+  <!-- <ion-input [(ngModel)]='query' placeholder='Search a Movie'>
+    <ion-icon slot="primary" name="search"></ion-icon>
+    <ion-button slot="secondary" ()="onSearchClick()" (click)="onSearchClick()">Search</ion-button>
+  </ion-input> -->
+  <!-- <ion-button expand="full" (click)="openDetails()">Go to Details with function</ion-button>
+  <ion-button expand="full" routerLink="/tabs/films/42" routerDirection="forward">Go to Details with link</ion-button>
+  <ion-button expand="full" (click)="goToPlanets()">Switch to Planets</ion-button> -->
+
+  <ion-footer class="ion-align-items-center" class="ion-justify-content-center" *ngIf='queryObject!=undefined'>
+    <ion-icon (click)="onSearchPageLess()" name="chevron-back-outline"></ion-icon>
+    Page {{page}}/{{queryObject.total_pages}}
+    <ion-icon (click)="onSearchPagePlus()" name="chevron-forward-outline"></ion-icon>
+  </ion-footer>
+
+</ion-content>

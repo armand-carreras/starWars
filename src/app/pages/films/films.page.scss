@@ -1,0 +1,21 @@
+ion-searchbar{
+  border: 1px solid;
+  border-color: var(--ion-text-color);
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
+.searchContainer{
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.card{
+  width: 150px;
+  height: 200px
+}

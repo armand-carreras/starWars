@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button
+                text='back'
+                icon='chevron-back'
+                defaultHref="/tabs/films/">
+
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title>{{movie.title}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-card *ngIf='movie != undefined'>
+    <ion-img [src]='"https://image.tmdb.org/t/p/w500"+movie.poster_path'></ion-img>
+    <ion-card-content>
+      <ion-card-header>
+        <ion-card-title>{{movie.title}}</ion-card-title>
+        <ion-card-subtitle>Estreno: {{movie.release_date}} Popularidad: {{movie.popularity}}</ion-card-subtitle>
+      </ion-card-header>
+      Reseña:<br> {{movie.overview}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
